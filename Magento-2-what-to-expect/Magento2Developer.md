@@ -1,0 +1,296 @@
+![original](images/M2_BG-Cover-P.png)
+
+---
+
+## [fit] Magento 2
+## what to expect as a developer
+
+![original](images/AS-black-bg.png)
+
+---
+
+### James Cowie
+### Technical Team Lead Session Digital
+#### t/**@jcowie** gh/**jamescowie**
+
+![original](images/AS-pink-bg.png)
+
+---
+
+### Whats changed since
+### [fit] Magento 1
+
+![original](images/AS-pink-bg.png)
+
+---
+
+![](images/php.jpg)
+
+---
+
+- 2012 Composer
+- 2009 Namespaces
+- 2009 Traits
+- 2013 Generators
+- 2012 Typehinting
+
+![original](images/AS-pink-bg.png)
+
+---
+![original](images/AS-pink-bg.png)
+
+# The world of 
+## [fit] engineering has changed
+---
+
+- Server Architecture
+- TDD
+- BDD
+- DDD
+
+![original](images/AS-pink-bg.png)
+
+---
+# Monolithic
+---
+
+# [fit] Composer ![inline](https://getcomposer.org/img/logo-composer-transparent3.png)
+
+![](images/packagist.png)
+
+^ in 2011 Jordi Boggiano started out on creating a solution for the PHP community. His goal was to have a reliable package manager for PHP so anyone could create packages that could be used in any project. Composer was going to be the tool that managed a projects dependency by pinning versoins of installed software and could over time manage the dependencies of dependencies.
+
+^ One of the problems we as Magento developers faced was that Magento 1 shipped with a non standard or easily extensible autoloader so any opportunity to load or use these packages was not going to be an easy journey.
+
+---
+![original](images/AS-black-bg.png)
+
+```json
+composer create-project 
+   --stability=beta 
+   --no-install 
+   magento/project-community-edition 
+   M2Test
+```
+---
+
+![original](images/AS-black-bg.png)
+
+```json
+{
+    "name": "magento/project-community-edition",
+    "type": "project",
+    "require": {
+        "magento/product-community-edition": 
+        "0.74.0-beta12"
+    },
+    "require-dev": {
+    }
+}
+```
+---
+# [fit] Composer can do more ![inline](https://getcomposer.org/img/logo-composer-transparent3.png)
+
+![](images/packagist.png)
+
+---
+
+![original](images/AS-black-bg.png)
+# simple install packages
+```bash
+ composer require "league/period"
+```
+---
+![original](images/AS-black-bg.png)
+# Use the package
+
+```php
+ 1     /**                                                                                                  
+ 2      * @var League\Period\Period;                                                                        
+ 3      */
+ 4     protected $_datePeriod;
+ 5 
+ 6     /**                                                                                                  
+ 7      * @param \League\Period\Period; $datePeriod                                                         
+ 8      */
+ 9     public function __construct(\League\Period\Period $datePeriod)
+10     {
+11         $this->_datePeriod = $datePeriod;
+12     }
+```
+
+---
+# [fit] Versioning
+# 1.0.2
+![](images/SemVerEvolution_3.png)
+
+^ We may think that version numbers are just there for convinience increase the last digit each time you save the file. But versioning is an extremly powerfull communication tool. If we follow the semantic versioning spectification we can tell people alot about out modules stability. What we are trying to comunicate is what version is our module at. We should follow that the first digit represent any majour releases of this software. Big breaking changes Magento 2 could be 2.0.0 when it first started development. Its a massive change and not one that you can just upgrade to without cause for concern. Now the next digit is minour number this should be incremepnted when you add functionality in a backwards compatiable manour. Your adding new functionality but not breaking any of the old stuff. Finally the last digit is the patch version. Find a bug fix the bug push the patch number up. That way people can see how your module is progressing, AND they can pin via composer there version to only even update to patched versioned or minor versions. Tha is unless we just throw a * in our composer.json dependency.
+
+---
+# Exact match
+
+![original](images/AS-black-bg.png)
+
+`"magento/product-community-edition": “1.0.1”`
+
+---
+
+# Ranges
+
+![original](images/AS-black-bg.png)
+
+`"magento/product-community-edition": “>=1.0, <2”`
+
+---
+
+# Wildcard
+
+![original](images/AS-black-bg.png)
+
+`"magento/product-community-edition": “1.0.*”`
+
+---
+
+# Next Significant release
+
+![original](images/AS-black-bg.png)
+
+`"magento/product-community-edition": “~1.2”`
+
+---
+
+![original](images/AS-black-bg.png)
+
+#Semantic versioning
+
+---
+
+# Decouple from the framework
+
+![original](images/AS-black-bg.png)
+
+---
+
+![original](images/AS-black-bg.png)
+
+# What are the benefits
+
+   - Clean Code 
+   - Reusable packages
+   - Testable
+   - Easier to read
+   - Easier to maintain
+
+---
+
+# [fit]Dependency Injection   
+
+## In magento 2
+
+![](images/injection.jpg)
+
+---
+
+![original](images/AS-black-bg.png)
+
+```php
+public function __construct(
+        \Magento\Framework\App\Action\Context $context,
+        \Magento\Catalog\Model\Design $catalogDesign,
+        \Magento\Catalog\Model\Session $catalogSession,
+        \Magento\Framework\Registry $coreRegistry,
+        \Magento\Store\Model\StoreManagerInterface $storeManager,
+        \Magento\CatalogUrlRewrite\Model\CategoryUrlPathGenerator $categoryUrlPathGenerator,
+        PageFactory $resultPageFactory,
+        \Magento\Framework\Controller\Result\ForwardFactory $resultForwardFactory,
+        Resolver $layerResolver,
+        CategoryRepositoryInterface $categoryRepository
+        \Magento\Framework\App\Action\Context $context,
+        \Magento\Catalog\Model\Design $catalogDesign,
+        \Magento\Catalog\Model\Session $catalogSession,
+        \Magento\Framework\Registry $coreRegistry,
+        \Magento\Store\Model\StoreManagerInterface $storeManager,
+        \Magento\CatalogUrlRewrite\Model\CategoryUrlPathGenerator
+        ) {
+        	...
+        }
+```        
+
+---
+
+![](images/codesmell.jpg)
+
+# Code Smell
+
+---
+![original](images/AS-black-bg.png)
+
+   - replaces Mage:: god class
+   - Dependency Injection can be overused. 
+   - Enables composition.
+
+---
+
+![original](images/AS-black-bg.png)
+
+# Before dependency injection
+
+```php
+ 1 <?php
+ 2 class Sample
+ 3 {
+ 4     protected $logger;
+ 5 
+ 6     public function doSomething()
+ 7     {
+ 8         $this->logger = new \Logger();
+ 9         $logger->doSomething();
+10     }
+11 }
+```
+
+---
+
+# Magento 2 DI
+
+![original](images/AS-black-bg.png)
+
+```php
+ 1 <?php
+ 2 class SampleDi {
+ 3   protected $logger;
+ 4   public function __construct(\Logger $logger) {
+ 5     $this->logger = $logger;
+ 6   }
+ 7 
+ 8   public function doSomething() {
+ 9     $this->logger->doSomething();
+10   }
+11 }
+```
+
+---
+
+# What are the benefits ?
+
+![original](images/AS-black-bg.png)
+
+   - Responsibility  
+   - Swap concrete implementation
+   - Mock the dependency
+
+---
+![original](images/AS-black-bg.png)
+
+# Its not just objects 
+
+```xml
+<type name="Magento\Cms\Model\Wysiwyg\Images\Storage">   <arguments>     <argument name="extensions" xsi:type="array">          <item name="allowed" xsi:type="array">            <item name="jpg" xsi:type="number">1</item>            <item name="jpeg" xsi:type="number">1</item>            <item name="png" xsi:type="number">1</item>            <item name="gif" xsi:type="number">1</item>           </item>
+     </argument>
+  </arguments>
+…
+```
+
+---
+
+![](images/contract.jpg)
