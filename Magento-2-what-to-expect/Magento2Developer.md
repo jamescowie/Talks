@@ -44,9 +44,9 @@
 ---
 
 - Server Architecture
-- TDD
-- BDD
-- DDD
+- Test Driven Development
+- Behaviour Driven Development
+- Domain Driven Design
 
 ![original](images/AS-pink-bg.png)
 
@@ -370,7 +370,63 @@ public function __construct(
 
 ---
 
+# DI.xml[^1]
+
+![original](images/AS-black-bg.png)
+
+```xml
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="/lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+
+    <type name="Magento\Framework\View\TemplateEngineFactory">
+        <arguments>
+            <argument name="engines" xsi:type="array">
+                <item name="twig" xsi:type="string">SchumacherFM\Twig\Framework\View\TemplateEngine\Twig</item>
+            </argument>
+        </arguments>
+    </type>
+</config>
+```
+
+[^1]: Cyrill Schumacher's [Twig extension](https://github.com/SchumacherFM/Magento2-Twig)
+
+^ Magento 2 comes with an advanced dependency injection container. Its power can be seen with this example. My default Magento 2 uses phtml as its template engine however by using the di.xml file we can easily change this template enging to be something else. Cyrill Schumacher did this on a flight back to Australia. So how does it work ? Well the template engine factory class has a contructor argument injected into it that is the template engine to use. Because the DI container gets compilled when this file gets parsed we are replacing the default engine with our new twig implementation. 
+
+---
+
 ![](images/contract.jpg)
+
+# [fit] Service Contracts
+   - PHP Interfaces
+   - Public API of the class
+   - Design by contract [^1]
+
+[^1]: [Design by contract](https://en.wikipedia.org/wiki/Design_by_contract)   
+
+---
+
+![original](images/AS-black-bg.png)
+
+# [fit] Customer repository service contract
+
+```php
+<?php
+namespace Magento\Customer\Api;
+interface CustomerRepositoryInterface
+{
+    public function save(\Magento\Customer\Api\Data\CustomerInterface $customer, $passwordHash = null);
+    public function get($email, $websiteId = null);
+    public function getById($customerId);
+    public function getList(\Magento\Framework\Api\SearchCriteriaInterface $searchCriteria);
+    public function delete(\Magento\Customer\Api\Data\CustomerInterface $customer);
+    public function deleteById($customerId);
+}
+```
+
+---
+
+![190%](images/tests.jpg)
 
 ---
 
