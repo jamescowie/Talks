@@ -426,6 +426,29 @@ interface CustomerRepositoryInterface
 
 ---
 
+![original](images/AS-black-bg.png)
+
+# Annotations
+
+```php
+    /**
+     * Create customer.
+     *
+     * @api
+     * @param \Magento\Customer\Api\Data\CustomerInterface $customer
+     * @param string $passwordHash
+     * @return \Magento\Customer\Api\Data\CustomerInterface
+     * @throws \Magento\Framework\Exception\InputException If bad input is provided
+     * @throws \Magento\Framework\Exception\State\InputMismatchException If the provided email is already used
+     * @throws \Magento\Framework\Exception\LocalizedException
+     */
+    public function save(\Magento\Customer\Api\Data\CustomerInterface $customer, $passwordHash = null);
+```
+
+^ Magento 2 uses annotations heavily thoughout the code base to provide extra helpers at compile or runtime. When we create service contracts we need to ensure we add the annotation @api to each of the public methods to indicate that these are public API's. This gives us the advantage of not only describing the API of the class for developers but it also makes these methods available via the REST and Soap API's. We no longer need to create extra XML configuration to define the API methods
+
+---
+
 ![190%](images/tests.jpg)
 
 ---
