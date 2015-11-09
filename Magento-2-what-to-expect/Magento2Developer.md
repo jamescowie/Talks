@@ -161,7 +161,75 @@ composer create-project
 
 ![original](images/AS-black-bg.png)
 
-#Semantic versioning
+#Semantic versioning[^1]
+
+[^1]: The full specification can be found at the [http://semver.org](http://semver.org/) website
+
+---
+
+![](images/bricks.png)
+
+# [fit]Packaging modules for reuse
+
+---
+![original](images/AS-black-bg.png)
+# How to package a Magento 2 module
+
+```json
+{
+    "name": "SessionDigital/Magento2Module",
+    "description": "Magento 2 module to show how to package a module",
+    "extra": {
+        "map": [
+            [
+                "*",
+                "SessionDigital/Magento2Module"
+            ]
+        ]
+    }
+}
+```
+
+---
+![original](images/AS-black-bg.png)
+# Use autoloading 
+
+```json
+{
+    "name": "SessionDigital/Magento2Module",
+    "description": "N/A",
+    "require": {
+        "php": "~5.5.0|~5.6.0|~7.0.0",
+        "magento/framework": "100.0.0"
+    },
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "autoload": {
+        "files": [ "registration.php" ],
+        "psr-4": {
+   		     "SessionDigital\\Magento2Module\\": ""
+	    }
+    }
+}
+```
+
+---
+# registration.php
+
+![original](images/AS-black-bg.png)
+
+```php
+<?php
+\Magento\Framework\Component\ComponentRegistrar::register(
+    \Magento\Framework\Component\ComponentRegistrar::MODULE,
+    'SessionDigital_Magento2Module',
+    __DIR__
+);
+```
 
 ---
 
@@ -180,6 +248,15 @@ composer create-project
    - Testable
    - Easier to read
    - Easier to maintain
+
+---
+
+# [fit] The naked
+# Magento module
+
+![](images/emet.jpg)
+
+^ The idea of the naked module is to create code that is completely unaware that it will be applied within a Magento application. This would mean that it can also be applied to a new version of Magento with a greatly reduced amount of re-work. We get to apply DRY in the true form and only create the new wiring to Magento 2 or 3 or 4. Magento will last for ever you know!
 
 ---
 
@@ -294,3 +371,20 @@ public function __construct(
 ---
 
 ![](images/contract.jpg)
+
+---
+
+![](images/devdocs.png)
+
+---
+
+![](images/github.png)
+
+--- 
+
+# [fit] Thank you...
+
+![original](images/AS-pink-bg.png)
+
+---
+
