@@ -5,7 +5,9 @@
 ## [fit] Magento 2
 ## what to expect as a developer
 
-![original](images/AS-black-bg.png)
+![original](images/M2_BG-dark.png)
+
+^ Hello and thanks for coming along. During this talk I will go through some of the new advancements that Magento 2 offers.
 
 ---
 
@@ -13,14 +15,14 @@
 ### Technical Team Lead Session Digital
 #### t/**@jcowie** gh/**jamescowie**
 
-![original](images/AS-pink-bg.png)
+![original](images/M2_BG-Pink.png)
 
 ---
 
-### Whats changed since
+### What's changed since
 ### [fit] Magento 1
 
-![original](images/AS-pink-bg.png)
+![original](images/M2_BG-Pink.png)
 
 ---
 
@@ -28,16 +30,16 @@
 
 ---
 
-- 2012 Composer
 - 2009 Namespaces
 - 2009 Traits
-- 2013 Generators
+- 2012 Composer
 - 2012 Typehinting
+- 2013 Generators
 
-![original](images/AS-pink-bg.png)
+![original](images/M2_BG-Pink.png)
 
 ---
-![original](images/AS-pink-bg.png)
+![original](images/M2_BG-Pink.png)
 
 # The world of 
 ## [fit] engineering has changed
@@ -48,9 +50,12 @@
 - Behaviour Driven Development
 - Domain Driven Design
 
-![original](images/AS-pink-bg.png)
+![original](images/M2_BG-Pink.png)
 
 ---
+
+![original](images/M2_BG-Pink.png)
+
 # Monolithic
 ---
 
@@ -63,7 +68,7 @@
 ^ One of the problems we as Magento developers faced was that Magento 1 shipped with a non standard or easily extensible autoloader so any opportunity to load or use these packages was not going to be an easy journey.
 
 ---
-![original](images/AS-black-bg.png)
+![original](images/M2_BG-dark.png)
 
 ```json
 composer create-project 
@@ -74,7 +79,7 @@ composer create-project
 ```
 ---
 
-![original](images/AS-black-bg.png)
+![original](images/M2_BG-dark.png)
 
 ```json
 {
@@ -95,13 +100,13 @@ composer create-project
 
 ---
 
-![original](images/AS-black-bg.png)
+![original](images/M2_BG-dark.png)
 # simple install packages
 ```bash
  composer require "league/period"
 ```
 ---
-![original](images/AS-black-bg.png)
+![original](images/M2_BG-dark.png)
 # Use the package
 
 ```php
@@ -129,7 +134,7 @@ composer create-project
 ---
 # Exact match
 
-![original](images/AS-black-bg.png)
+![original](images/M2_BG-dark.png)
 
 `"magento/product-community-edition": “1.0.1”`
 
@@ -137,7 +142,7 @@ composer create-project
 
 # Ranges
 
-![original](images/AS-black-bg.png)
+![original](images/M2_BG-dark.png)
 
 `"magento/product-community-edition": “>=1.0, <2”`
 
@@ -145,7 +150,7 @@ composer create-project
 
 # Wildcard
 
-![original](images/AS-black-bg.png)
+![original](images/M2_BG-dark.png)
 
 `"magento/product-community-edition": “1.0.*”`
 
@@ -153,17 +158,17 @@ composer create-project
 
 # Next Significant release
 
-![original](images/AS-black-bg.png)
+![original](images/M2_BG-dark.png)
 
 `"magento/product-community-edition": “~1.2”`
 
 ---
 
-![original](images/AS-black-bg.png)
+![original](images/M2_BG-dark.png)
 
-#Semantic versioning[^1]
+#Semantic versioning[^2]
 
-[^1]: The full specification can be found at the [http://semver.org](http://semver.org/) website
+[^2]: The full specification can be found at the [http://semver.org](http://semver.org/) website
 
 ---
 
@@ -172,7 +177,7 @@ composer create-project
 # [fit]Packaging modules for reuse
 
 ---
-![original](images/AS-black-bg.png)
+![original](images/M2_BG-dark.png)
 # How to package a Magento 2 module
 
 ```json
@@ -191,7 +196,7 @@ composer create-project
 ```
 
 ---
-![original](images/AS-black-bg.png)
+![original](images/M2_BG-dark.png)
 # Use autoloading 
 
 ```json
@@ -220,7 +225,7 @@ composer create-project
 ---
 # registration.php
 
-![original](images/AS-black-bg.png)
+![original](images/M2_BG-dark.png)
 
 ```php
 <?php
@@ -235,11 +240,11 @@ composer create-project
 
 # Decouple from the framework
 
-![original](images/AS-black-bg.png)
+![original](images/M2_BG-dark.png)
 
 ---
 
-![original](images/AS-black-bg.png)
+![original](images/M2_BG-dark.png)
 
 # What are the benefits
 
@@ -268,7 +273,7 @@ composer create-project
 
 ---
 
-![original](images/AS-black-bg.png)
+![original](images/M2_BG-dark.png)
 
 ```php
 public function __construct(
@@ -300,7 +305,7 @@ public function __construct(
 # Code Smell
 
 ---
-![original](images/AS-black-bg.png)
+![original](images/M2_BG-dark.png)
 
    - replaces Mage:: god class
    - Dependency Injection can be overused. 
@@ -308,7 +313,7 @@ public function __construct(
 
 ---
 
-![original](images/AS-black-bg.png)
+![original](images/M2_BG-dark.png)
 
 # Before dependency injection
 
@@ -330,7 +335,7 @@ public function __construct(
 
 # Magento 2 DI
 
-![original](images/AS-black-bg.png)
+![original](images/M2_BG-dark.png)
 
 ```php
  1 <?php
@@ -350,14 +355,14 @@ public function __construct(
 
 # What are the benefits ?
 
-![original](images/AS-black-bg.png)
+![original](images/M2_BG-dark.png)
 
    - Responsibility  
    - Swap concrete implementation
    - Mock the dependency
 
 ---
-![original](images/AS-black-bg.png)
+![original](images/M2_BG-dark.png)
 
 # Its not just objects 
 
@@ -370,9 +375,9 @@ public function __construct(
 
 ---
 
-# DI.xml[^1]
+# DI.xml[^3]
 
-![original](images/AS-black-bg.png)
+![original](images/M2_BG-dark.png)
 
 ```xml
 <?xml version="1.0"?>
@@ -389,7 +394,7 @@ public function __construct(
 </config>
 ```
 
-[^1]: Cyrill Schumacher's [Twig extension](https://github.com/SchumacherFM/Magento2-Twig)
+[^3]: Cyrill Schumacher's [Twig extension](https://github.com/SchumacherFM/Magento2-Twig)
 
 ^ Magento 2 comes with an advanced dependency injection container. Its power can be seen with this example. My default Magento 2 uses phtml as its template engine however by using the di.xml file we can easily change this template enging to be something else. Cyrill Schumacher did this on a flight back to Australia. So how does it work ? Well the template engine factory class has a contructor argument injected into it that is the template engine to use. Because the DI container gets compilled when this file gets parsed we are replacing the default engine with our new twig implementation. 
 
@@ -406,7 +411,7 @@ public function __construct(
 
 ---
 
-![original](images/AS-black-bg.png)
+![original](images/M2_BG-dark.png)
 
 # [fit] Customer repository service contract
 
@@ -426,7 +431,7 @@ interface CustomerRepositoryInterface
 
 ---
 
-![original](images/AS-black-bg.png)
+![original](images/M2_BG-dark.png)
 
 # Annotations
 
@@ -453,7 +458,19 @@ interface CustomerRepositoryInterface
 
 ---
 
+![original](images/M2_BG-dark.png)
+
+> Untested code is incomplete code
+
+-- Ben Marks @ Magento
+
+---
+
 ![](images/devdocs.png)
+
+### [http://devdocs.magento.com](http://devdocs.magento.com)
+
+^ Magento are aware that there is going to be a steep learning curve for Magento 2. So they are trying to meet developers half way and provide comprehensive documentation on all features of the framework. The documentations is tested weekly and can be modified by anyone using Github. 
 
 ---
 
@@ -463,7 +480,6 @@ interface CustomerRepositoryInterface
 
 # [fit] Thank you...
 
-![original](images/AS-pink-bg.png)
+![original](images/M2_BG-Pink.png)
 
----
 
