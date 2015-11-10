@@ -7,7 +7,7 @@
 
 ![original](images/M2_BG-dark.png)
 
-^ Hello and thanks for coming along. During this talk I will go through some of the new advancements that Magento 2 offers.
+^ Hello and thanks for coming along. During this talk I will go through what we as developer can expect from Magento 2. What new technologies, patterns and princuples we can expect to see and use while working with Magento 2
 
 ---
 
@@ -15,7 +15,9 @@
 ### Technical Team Lead Session Digital
 #### t/**@jcowie** gh/**jamescowie**
 
-![original](images/M2_BG-Pink.png)
+![original](images/M2_BG-Light.png)
+
+^ I am a TTL working on one of the Magento 2 projects. For the past few months I have been activly involved in the Magento 2 merchant beta. As well as being involved in the Developer beta at the start of the year
 
 ---
 
@@ -24,9 +26,13 @@
 
 ![original](images/M2_BG-Pink.png)
 
+^ Before we look at what is new in Magento 2 its important to take a look at what has changed since Magento 1 was first released all those years back. A lot of time has passed since the first release 7+ years back
+
 ---
 
 ![](images/php.jpg)
+
+^ The largest change has been the core language itself. 
 
 ---
 
@@ -36,13 +42,18 @@
 - 2012 Typehinting
 - 2013 Generators
 
-![original](images/M2_BG-Pink.png)
+![original](images/M2_BG-Light.png)
+
+^ All of these core language features and composer have been developed after the first release of Magento. 
 
 ---
 ![original](images/M2_BG-Pink.png)
 
 # The world of 
 ## [fit] engineering has changed
+
+^ Not only has the language changed, the way we look at the architecture of projects has changed. 
+
 ---
 
 - Server Architecture
@@ -50,13 +61,29 @@
 - Behaviour Driven Development
 - Domain Driven Design
 
-![original](images/M2_BG-Pink.png)
+![original](images/M2_BG-Light.png)
+
+^ How we deploy and where we deploy to has changed. Our options are increasing than just having to buy physical space in data centres. 
+^ TDD has become more prominent in PHP thanks to the progress made by PHPUnit and others, 
+^ BDD has seen the first supporting tools emerge in the form of Behat and PHPSpec
+^ And more recently the excitment and acknowledgment of DDD in the PHP Communits
 
 ---
 
 ![original](images/M2_BG-Pink.png)
 
+# Magento 1 Installation
+
+^ I bet a good percentage of people here created there own process to install Magento 1. Be this is a seed repository or bash script. 
+
+---
+
+![original](images/M2_BG-Light.png)
+
 # Monolithic
+
+^ One of the reasons behind having to do this was because Magento 1 was a monolithic system. By nature we had to visit magentocommerce.com and download a compressed package of all the source code for either CE or EE. Remembering at the time of creation for M1 there was no composer, No NPM composable applications was still a thing to come.
+
 ---
 
 # [fit] Composer ![inline](https://getcomposer.org/img/logo-composer-transparent3.png)
@@ -68,6 +95,15 @@
 ^ One of the problems we as Magento developers faced was that Magento 1 shipped with a non standard or easily extensible autoloader so any opportunity to load or use these packages was not going to be an easy journey.
 
 ---
+
+![original](images/M2_BG-Pink.png)
+
+# Magento 2 Installation
+
+^ Thankfully composer now features at the core of Magento 2. You can navigate far through the source code without finding a reference to a composer manifest. In fact you shouldnt install Magento 2 without composer. Enterprise EE is a set of additional modules that we install ontop of CE so no longer are there 2 packages for the different versions.
+
+---
+
 ![original](images/M2_BG-dark.png)
 
 ```json
@@ -77,6 +113,9 @@ composer create-project
    magento/project-community-edition 
    M2Test
 ```
+
+^ Because Magento 2 project package has been added to packagist we can use the composer CLI tool to create us a new project based on the depdendcies of that project. Lots more efficient than magento 1.
+
 ---
 
 ![original](images/M2_BG-dark.png)
@@ -87,25 +126,37 @@ composer create-project
     "type": "project",
     "require": {
         "magento/product-community-edition": 
-        "0.74.0-beta12"
+        "merchant_beta"
     },
     "require-dev": {
     }
 }
 ```
+
+^ Now the output of the CLI process, other than some of the initial source files is what we refer to as the composer manifest file or composer.json. Whats important is what we see inside the require node as that is the package to install and the exact version we want installing.
+
 ---
+
 # [fit] Composer can do more ![inline](https://getcomposer.org/img/logo-composer-transparent3.png)
 
 ![](images/packagist.png)
 
+^ First impressions are that composer is just a tool to download and install a package. Well it can do lots more than that. For the first time Magento developers can truely embrace the vast knowledge of the PHP community and easily re use there works. Packagist is the largest searchable directory of PHP packages for any need. Instead of having to write our own packages for PDF manipulation etc we can do look to the community to be our experts. We just need to know where to look.
+
 ---
 
 ![original](images/M2_BG-dark.png)
+
 # simple install packages
+
 ```bash
  composer require "league/period"
 ```
+
+^ Installing these community packages into Magento 2 is just as easy. Via the CLI we just use the require flag to instruct composer to add that package to our project.
+
 ---
+
 ![original](images/M2_BG-dark.png)
 # Use the package
 
@@ -123,6 +174,8 @@ composer create-project
 11         $this->_datePeriod = $datePeriod;
 12     }
 ```
+
+^ THen within our Magento 2 project source code we can just use the package as we would any other PHP Framework. The days of the `lib` folder in Magento 1, as well as the non standard autoloading days are behind us. Because Magento 2 autoloading follows the PSR standards its as simle as search, fine, require and use. 
 
 ---
 # [fit] Versioning
@@ -164,11 +217,15 @@ composer create-project
 
 ---
 
-![original](images/M2_BG-dark.png)
+![original](images/M2_BG-Pink.png)
 
 #Semantic versioning[^2]
 
 [^2]: The full specification can be found at the [http://semver.org](http://semver.org/) website
+
+^ Major -> Breaking changes , 
+^ Minor -> Feature enhancments non BC, 
+^ Patch -> Bug fix, security fix
 
 ---
 
@@ -176,7 +233,10 @@ composer create-project
 
 # [fit]Packaging modules for reuse
 
+^ We always had code reuse in Magento 1 thanks to the advancments made in Modman, The hackathon projects and to some extent connect. Yet because we can use packages so freely now its important for us to see how we can package our Magento 2 module for either open source or other projects.
+
 ---
+
 ![original](images/M2_BG-dark.png)
 # How to package a Magento 2 module
 
@@ -195,7 +255,10 @@ composer create-project
 }
 ```
 
+^ If you have been looking at Magento 2 from earlier this year you may be familiar with this mapping concept in the composer manifest. Up until recently Magento 2 still required the source files for module to physically be placed into the `app/code` folder so they could be loaded. We can still use this method and define our mappings of source -> destination.
+
 ---
+
 ![original](images/M2_BG-dark.png)
 # Use autoloading 
 
@@ -222,6 +285,8 @@ composer create-project
 }
 ```
 
+^ Thanks to the combined efforts between Magento 2 core team and the community, we now have the ability to use our dependencies without having to place them in the code directory. If you are used to working with other PHP frameworks, Symfony for example you will know that when composer installs a dependency it does not copy it into our src folder. Instead we rely on composer's autoloading feature to enable these modules. And this is what we can now do with Magento 2. What is different is that we need to define our module as being of "type" Magento2-module and then in the autoload section we specify a autoload file to be ran: registration.php and our PSR4 namespace.
+
 ---
 # registration.php
 
@@ -236,11 +301,16 @@ composer create-project
 );
 ```
 
+^ This registration.php file is the same for all modules we install, only expection to this rile is registar can be of type MODUlE or THEME. But all we are really doing is registering our module with Magento 2 env.php for initialisation into the framework.
+
 ---
 
-# Decouple from the framework
+# [fit]Decouple from 
+# [fit]the framework
 
-![original](images/M2_BG-dark.png)
+![original](images/M2_BG-Pink.png	)
+
+^ Not new for Magento but if you look at any technical conference from the past 2+ years you will see many people promoting the idea that we should not couple ourselves to a framework. Not that frameworks are evil or wrong. Just that we are specalists in our own Business domains so we should write decoupled clean code than can be used in a framework,
 
 ---
 
@@ -253,6 +323,10 @@ composer create-project
    - Testable
    - Easier to read
    - Easier to maintain
+
+^ De coupled code is clean code it can express its intent far more clearer than if mixed in with framework implementations,
+^ Re usable packages not only between Magento projects but between frameworks.
+^ De coupled code by nature is more testable. We are not having to write tests cases for the framework, Mocks for DB etc.
 
 ---
 
@@ -270,6 +344,8 @@ composer create-project
 ## In magento 2
 
 ![](images/injection.jpg)
+
+^ Magento 2 could not be a modern framework and continue to power e-commerce if it did not adopt dependency injection. The DI container within Magento 2 is an extremly complicated but powerfull tool we now have in our developer toolbox. Similar in concept to the Symfony DI container it allows us to inject dependencies directly into the constructor. The DI compiller can then inject the correct dependencies if we are working from interfaces, It has code generation and will inject factories to name just a few
 
 ---
 
@@ -298,13 +374,20 @@ public function __construct(
         }
 ```        
 
+^ This was one of the examples that got tweeted the world over. One of the earlier constructor arguments from an early M2 build. There were more dependencies getting added but I was not sure how large the projector screen would be 
+
 ---
 
 ![](images/codesmell.jpg)
 
 # Code Smell
 
+^ What this helped identify though was that the classes being pulled in from Magento 1 were doing far too much, We can use this in our development. Now we have to inject all of our classes's depedencies we can actually see what it needs to function and easily identify if we are breaking some of the common patterns of software design.
+
 ---
+
+## Quick recap on DI in Magento 2
+
 ![original](images/M2_BG-dark.png)
 
    - replaces Mage:: god class
@@ -326,10 +409,13 @@ public function __construct(
  6     public function doSomething()
  7     {
  8         $this->logger = new \Logger();
- 9         $logger->doSomething();
-10     }
-11 }
+ 9         $this->logger = Mage::getModel('core/logger'); 
+10         $logger->doSomething();
+11     }
+12 }
 ```
+
+^ Before we had DI in Magento, we would commonly do this, Either create new instances of objects directly in our class methods, or use the mage god class to pull anything and everything our of a complex factory. Dont get me wrong, This has worked and is still working today for projects. Where this breaks down is if we want to swap all implementations of Logger for another type, Or when we are testing. Its very hard to tests this code because of the hard dependency on the objects they are creating.
 
 ---
 
@@ -351,6 +437,8 @@ public function __construct(
 11 }
 ```
 
+^ Magento 2 supports constructor injection. It is possible to use setters but the examples you will see and read in the core all implement the use of constructor injection. As the name implies we are injecting our dependencies directly into the constructor to allow the object to then use them.
+
 ---
 
 # What are the benefits ?
@@ -361,10 +449,13 @@ public function __construct(
    - Swap concrete implementation
    - Mock the dependency
 
+^ Responsibility, We are moving the responsibility of creation of these objects away from the class that uses them. Making the objects responsible for ideally only one thing When we look at DI.xml and the more advanced configuration of the M2 container we will see how by just updating the containers XML we can completly change the concrete implementation without having to touch the PHP classes. Because we are injecting into the constrcutor using PHPSpec, PHPUnit etc its far more easire for us to mock the dependencies meaning that our tests no longer have to talk to the underlying architecture. 
+
 ---
+
 ![original](images/M2_BG-dark.png)
 
-# Its not just objects 
+# It's not just object's 
 
 ```xml
 <type name="Magento\Cms\Model\Wysiwyg\Images\Storage">   <arguments>     <argument name="extensions" xsi:type="array">          <item name="allowed" xsi:type="array">            <item name="jpg" xsi:type="number">1</item>            <item name="jpeg" xsi:type="number">1</item>            <item name="png" xsi:type="number">1</item>            <item name="gif" xsi:type="number">1</item>           </item>
@@ -372,6 +463,8 @@ public function __construct(
   </arguments>
 …
 ```
+
+^ Because of how the container is designed its not only objects that can be injected. In the core they are also injecting strings into the image storeage class settins what image types this class cab use.
 
 ---
 
@@ -409,6 +502,8 @@ public function __construct(
 
 [^1]: [Design by contract](https://en.wikipedia.org/wiki/Design_by_contract)   
 
+^ Service contracts or Interfaces as the PHP language defines them are great ways of creating a "Contract" of intent for how the class should be used and what it will do. The service contracts within Magento 2 serves 2 purposes. It provides the interfaces that define how our classes behave and are used in the DI.xml so we can inject concrete types but via DI change these types. And it also provides the public Rest / Soap API's that can be consumed 
+
 ---
 
 ![original](images/M2_BG-dark.png)
@@ -428,6 +523,8 @@ interface CustomerRepositoryInterface
     public function deleteById($customerId);
 }
 ```
+
+^ When working with Magento 2 we should make sure that we always use the Service Contracts and not fall back to pulling models from the Object Manager. We will find these Interfaces within the API folder of our modules and they are contracts for what you can use from our module method wise. Interfaces combined with semantic versioning should mean that code breaks based on incompatabilties are a thing of the past. But with this example we can clearly see that when we want to interact with a customer we can call one of methods. We dont need to be concerned with how they are getting the data just that based on the return types and input we know we can get save delete etc. If we wanted to change this behaviour to not save into a database, We could implement this interface in our own module and use the DI.xml to inject a new implementation into the core so that when saving a customer we use mailchimp instead.
 
 ---
 
@@ -456,6 +553,8 @@ interface CustomerRepositoryInterface
 
 ![190%](images/tests.jpg)
 
+^ Magento 1 did later in its life get the TAF ( test automation framework ). Yet it was not baked in from the start so adoption was sparse. Magento 2 core team knew that they would not be able to develop a leading E-commerce framework without the inclusions of Unit tests, Functional tests and Integration tests. Every single module in the Magento 2 core now has each of the 3 test types bundled with it. Testing is now considered to be the norm in M2 development and not the expection. What is also exciting is that all modules that are going to be considered for Connect have to include tests as part of there approval process
+
 ---
 
 ![original](images/M2_BG-dark.png)
@@ -473,6 +572,8 @@ interface CustomerRepositoryInterface
 ^ Magento are aware that there is going to be a steep learning curve for Magento 2. So they are trying to meet developers half way and provide comprehensive documentation on all features of the framework. The documentations is tested weekly and can be modified by anyone using Github. 
 
 ---
+
+### [http://github.com/magento/magento2](http://github.com/magento/magento2)
 
 ![](images/github.png)
 
