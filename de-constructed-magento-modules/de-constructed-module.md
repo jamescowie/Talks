@@ -40,31 +40,33 @@
 
 **Tight coupling**
 
-Tight coupling is when a group of classes are highly dependent on one another. This scenario arises when a class assumes too many responsibilities, or when one concern is spread over many classes rather than having its own class.[^1]
+Tight coupling is when a group of classes are highly dependent on one another. This scenario arises when a class assumes too many responsibilities, or when one concern is spread over many classes rather than having its own class.[^10]
 
-[^1]: https://en.wikipedia.org/wiki/Coupling_(computer_programming)
+[^10]: https://en.wikipedia.org/wiki/Coupling_(computer_programming)
 
 ---
 
 **Loose coupling**
 
-Loosely coupled code is where each of a systems modules has, or makes use of, little or no knowledge of the definitions of other separate modules[^1]
+Loosely coupled code is where each of a systems modules has, or makes use of, little or no knowledge of the definitions of other separate modules[^11]
 
-[^1]: https://en.wikipedia.org/wiki/Loose_coupling
-
----
-
-# High Cohesion
-> Modules with high cohesion tend to be preferable, because high cohesion is associated with several desirable traits of software including robustness, reliability, reusability, and understandability. [^1]
-
-[^1]: https://en.wikipedia.org/wiki/Cohesion_(computer_science)
+[^11]: https://en.wikipedia.org/wiki/Loose_coupling
 
 ---
 
-# Low Cohesion
-> In contrast, low cohesion is associated with undesirable traits such as being difficult to maintain, test, reuse, or even understand.[^1]
+**High Cohesion**
 
-[^1]: https://en.wikipedia.org/wiki/Cohesion_(computer_science)
+ Modules with high cohesion tend to be preferable, because high cohesion is associated with several desirable traits of software including robustness, reliability, reusability, and understandability. [^3]
+
+[^3]: https://en.wikipedia.org/wiki/Cohesion_(computer_science)
+
+---
+
+**Low Cohesion**
+
+In contrast, low cohesion is associated with undesirable traits such as being difficult to maintain, test, reuse, or even understand.[^13]
+
+[^13]: https://en.wikipedia.org/wiki/Cohesion_(computer_science)
 
 ---
 
@@ -72,7 +74,7 @@ Loosely coupled code is where each of a systems modules has, or makes use of, li
 
 ---
 
-# **D**on't **R**epeat **Y**ourself[^⌘]
+## **D**on't **R**epeat **Y**ourself[^⌘]
 
 [^⌘]: Cut: Command ⌘ - x, Copy: Command ⌘ - c, Paste: Command ⌘ - v
 
@@ -361,21 +363,12 @@ class OutOfStockProducts
 
 ```php
 <?php namespace MageTitans\BetterEmailer\Commands;
-
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Command\Command;
+...
 
 class EmailCommand extends Command
 {
     protected function configure()
-    {
-        $this->setName('magetitans:betteremail');
-        $this->setDescription('Send all email out to people about how much stock is remaining');
-        parent::configure();
-    }
+    { ... }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
@@ -383,7 +376,9 @@ class EmailCommand extends Command
         $emailer = new \MageTitans\BetterEmailer\Model\Emailer();
 
         $emailTemplate = $emailer->setTemplate(['name' => 'james', 'lastname' => 'cowie', ]);
-        $emailer->sendEmail('SOMEAPIKEY','products',$emailTemplate, $products->getOutOfStockProducts());
+        $emailer->sendEmail(
+          'KEY','products',$emailTemplate, $products->getOutOfStockProducts()
+        );
 
         $output->writeln("Email has been sent");
     }
