@@ -1,0 +1,26 @@
+{
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "require-dev": {
+        "magetest/magento-phpspec-extension": "dev-develop",
+        "bossa/phpspec2-expect": "dev-master"
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "autoload": {
+        "psr-0": {
+            "MageTest\\PhpSpec\\MagentoExtension": "src",
+            "": [
+                "app/code/local",
+                "app/code/community",
+                "app/code/core",
+                "app",
+                "lib"
+            ],
+            "Mage" : "app/code/core"
+        }
+    },
+    "minimum-stability": "dev"
+}
